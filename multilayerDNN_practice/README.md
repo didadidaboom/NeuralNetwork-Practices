@@ -1,4 +1,4 @@
-1. workspace architecture
+1. Workspace architecture
 .				# root
 ├── config.py			# configure file (generally, yaml)
 ├── data			# dataset file
@@ -11,8 +11,8 @@
 ├── preprocess.py		# for dataset processing
 └── README.md			# readme
 
-2. topic: Identyfication of real and fake banknote based on multi-layer DNN model
-3. goal:
-	- familiar the flowchart of how to build a model by pytorch
+2. Topic: Identyfication of real and fake banknote based on multi-layer DNN model
+3. Goals:
+	- familiar with the flowchart of how to build a model by pytorch
 	- identyfying real and fake banknote by multi layer DNN model
 
