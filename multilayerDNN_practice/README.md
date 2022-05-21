@@ -11,6 +11,7 @@
   ├── log				# log directory
   ├── loss.py			# loss design script
   ├── model.py			# model design scrip
+  ├── trainer.py			# trainer scrip
   ├── model_save			# model (checkpoint) directory
   ├── preprocess.py		# for dataset processing
   └── README.md			# readme
