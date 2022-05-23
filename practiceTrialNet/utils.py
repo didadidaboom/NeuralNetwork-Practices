@@ -32,8 +32,14 @@ def recursive_fetching(path, format):
         cls_mapper = json.load(open(HP.cls_mapper_path, 'r'))
         id = cls_mapper["cls2id"][cls]
         print("cls = ",cls, " id = ", id, " first = ", first)
-        sub_datasets = recursive_data(id, first, format, cls)
-        datasets = datasets+sub_datasets
+        first_end = first.split(".")[-1]
+        if first_end and first_end == format[0]:
+            tmp = str(id) + "|" + cls + "~" + first
+            datasets.append(tmp)
+        else:
+            sub_datasets = recursive_data(id, first, format, cls)
+            if sub_datasets:
+                datasets = datasets+sub_datasets
     return datasets
 
 def load_meta(meta_path):
