@@ -6,34 +6,33 @@ from PIL import Image
 
 from config import HP
 
-def recursive_data(id, path, n, format, cls):
-    sub_path = "/*"*n
+def recursive_data(id, path, format, cls):
+    sub_path = "/*"
     first_list = glob.glob(path+sub_path)
     datasets = []
     if len(first_list):
         for first in first_list:
-            # print(first)
+            print("222--", first)
             first_end = first.split(".")[-1]
             if first_end and first_end==format[0]:
                 tmp = str(id)+"|"+cls+"~"+first
                 datasets.append(tmp)
             else:
-                n = n+1
-                sub_dataset = recursive_data(id, path, n, format, cls)
+                sub_dataset = recursive_data(id, first, format, cls)
                 if sub_dataset:
                     datasets = datasets+sub_dataset
-        return datasets
+    return datasets
 
 def recursive_fetching(path, format):
     first_list = glob.glob(path+"/*")
     datasets = []
     for first in first_list:
-        # print(first)
+        print("111 -- ",first)
         cls = first.split("/")[-1]
         cls_mapper = json.load(open(HP.cls_mapper_path, 'r'))
         id = cls_mapper["cls2id"][cls]
-        n = 1
-        sub_datasets = recursive_data(id, path, n, format, cls)
+        print("cls = ",cls, " id = ", id, " first = ", first)
+        sub_datasets = recursive_data(id, first, format, cls)
         datasets = datasets+sub_datasets
     return datasets
 
@@ -46,9 +45,9 @@ def load_image(image_path):
 
 
 if __name__ == '__main__':
-    re = recursive_fetching("./data/Marcel-Train", ["ppm"])
+    re = recursive_fetching("./data/test", ["ppm"])
     print(len(re))
-    # print(re)
+    print(re)
     # d1 = ["a", "b", "c"]
     # d2 = ["a2", "b2", "c2"]
     # c1 = d1+d2
